@@ -1,11 +1,10 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform,TouchableOpacity } from 'react-native';
+import { Platform,TouchableOpacity,Pressable } from 'react-native';
 
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { MaterialIcons, MaterialCommunityIcons, Entypo, Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { Feather,AntDesign,MaterialIcons, MaterialCommunityIcons, Entypo, Ionicons, FontAwesome5 } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -14,12 +13,8 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
+        headerShown: true,
         tabBarStyle: Platform.select({
-          ios: {
-            position: 'absolute',
-            height: 80,
-          },
           default: {
             height: 80,
           },
@@ -31,7 +26,19 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title:"홈",
+          title:"",
+          headerLeft: color => (
+            <Pressable onPress={() => {alert("알림 누름")}} style={{ marginLeft: 15 }}>
+              <Ionicons name="arrow-back" size={24} color={color} />
+            </Pressable>
+          ),
+          headerRight: (color) => (
+            <Pressable style={{ marginRight: 15,flexDirection:'row',gap:15 }}>
+              <Feather onPress={() => alert("메뉴 누름")} name="menu" size={26} color="black" />
+              <Feather onPress={() => alert("검색 누름")} name="search" size={26} color="black" />
+              <AntDesign onPress={() => alert("알림 누름")} name="bells" size={26} color={color} />
+            </Pressable>
+          ),
           tabBarIcon: ({ color }) => <Entypo name="home" size={24} color={color} />,
         }}
       />
