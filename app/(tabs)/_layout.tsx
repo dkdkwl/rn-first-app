@@ -16,7 +16,7 @@ export default function TabLayout() {
         headerShown: true,
         tabBarStyle: Platform.select({
           default: {
-            height: 80,
+            height: 90,
           },
         }),
         tabBarButton: (props) => (
@@ -27,13 +27,14 @@ export default function TabLayout() {
           name="index"
           options={{
             title: "홈",
-            headerTitle: () => (
+            headerTitle: (color) => (
               <Dropdown
                 style={ styles.dropdown }
                 data={[
                   { label: "구로동", value: "1" },
                   { label: "상1동", value: "2" },
                 ]}
+                color={color}
                 labelField="label"
                 valueField="value"
                 value={value}
@@ -44,7 +45,7 @@ export default function TabLayout() {
               />
             ),
           headerRight: (color) => (
-            <Pressable style={{ marginRight: 15,flexDirection:'row',gap:15 }}>
+            <Pressable style={{ marginRight: 15,flexDirection:'row',gap:15}}>
               <Feather onPress={() => alert("메뉴 누름")} name="menu" size={26} color={color} />
               <Feather onPress={() => alert("검색 누름")} name="search" size={26} color={color} />
               <AntDesign onPress={() => alert("알림 누름")} name="bells" size={26} color={color} />
