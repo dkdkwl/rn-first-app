@@ -33,8 +33,17 @@ export default function ViewScreen() {
           </View>
         </View>
         <View style={styles.profileRight}>
-          <Text style={styles.profileTemp}>71.5°C</Text>
-          <Text style={styles.profileTempText}>매너온도</Text>
+          <ThemedText style={styles.profileTemp}>71.5°C</ThemedText>
+          <ThemedText style={styles.profileTempText}>매너온도</ThemedText>
+        </View>
+      </View>
+      <View style={styles.content}>
+        <Text style={styles.contentTitle}>나오테크 3in1 오토스핀 맥세이프 충전기^^ 나오테크 3in1 오토스핀 맥세이프 충전기^^</Text>
+        <View>
+          <Text style={styles.contentPrice}>20,000원</Text>
+          <View>
+            <Text style={styles.contentCate}><Text style={styles.underLine}>스포츠/레저</Text> &middot; 53분 전</Text>
+          </View>
         </View>
       </View>
     </ThemedView>
@@ -90,5 +99,19 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     resizeMode: "cover",
+  },
+  content:{
+    paddingTop:20,    
+    paddingRight:12,
+    paddingLeft: 12,
+    lineHeight: 30
+  },
+  contentTitle:{
+    fontSize:20,
+    fontWeight:700,
+    lineHeight:28
+  },
+  underLine:{
+    textDecorationLine:"underline"
   }
 });
