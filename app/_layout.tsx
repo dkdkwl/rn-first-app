@@ -20,8 +20,11 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+      {/* 탭 네비게이터 */}
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {/* 상세 페이지 (탭에 안 보임) */}
+      <Stack.Screen name="view" options={{ title: "상세보기" }} />
+      <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

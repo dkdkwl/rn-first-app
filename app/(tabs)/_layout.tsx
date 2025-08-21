@@ -10,23 +10,27 @@ export default function TabLayout() {
   const [value, setValue] = useState("1");
   const colorScheme = useColorScheme();
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: true,
-        tabBarStyle: Platform.select({
-          default: {
-            height: 90,
-          },
-        }),
-        tabBarButton: (props) => (
-          <TouchableOpacity {...props} style={[props.style, { justifyContent: 'center' }]} />
-        ),
-      }}>
+<Tabs
+  screenOptions={{
+    headerShown: true,
+    headerTitleAlign: "left",
+
+    // 헤더 전체 높이 (iOS에서만 키움)
+    headerStyle: {
+      height: Platform.OS === "ios" ? 110 : 80, 
+    },
+
+    // 제목/오른쪽/왼쪽 컨테이너는 굳이 marginTop 안 줘도 됨
+    headerTitleContainerStyle: {
+      marginLeft: 0,  // 왼쪽 붙이고 싶을 때만
+    },
+  }}
+>
       <Tabs.Screen
           name="index"
           options={{
             title: "홈",
+            headerTitleAlign:'left',
             headerTitle: (color) => (
               <Dropdown
                 style={ styles.dropdown }
@@ -39,6 +43,16 @@ export default function TabLayout() {
                 valueField="value"
                 value={value}
                 onChange={(item) => setValue(item.value)}
+                // ✅ 텍스트 스타일들
+                placeholder="동 선택"
+                selectedTextStyle={{ 
+                  fontSize: 20, 
+                  color: {color}, 
+                  textAlign: 'left',
+                  fontWeight:700
+
+                }}
+                itemTextStyle={{ fontSize: 18, color: {color} }}
                 flatListProps={{
                   nestedScrollEnabled: true,   // ✅ 중첩 스크롤 허용
                 }}
@@ -87,7 +101,6 @@ export default function TabLayout() {
   );
 }
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20 },
   dropdown: {
     width: 110,
     height: 40,
@@ -95,5 +108,10 @@ const styles = StyleSheet.create({
     borderColor: "transparent",
     borderRadius: 8,
     paddingHorizontal: 12,
+    fontSize:20
   },
-  text: { marginTop: 20, fontSize: 16 }});
+  text: {
+    marginTop: 20,
+    fontSize: 20
+  }
+});

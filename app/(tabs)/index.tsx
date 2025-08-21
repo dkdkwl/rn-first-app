@@ -1,8 +1,11 @@
-import { StyleSheet, ScrollView,FlatList,Text,View,Image } from 'react-native';
+import { StyleSheet, ScrollView,FlatList,Text,View,Image,Pressable } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/constants/Colors';
+import { useNavigation } from "@react-navigation/native";
+
+
 
 const productList = [
   {
@@ -63,6 +66,7 @@ const productList = [
   }
 ];
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const colorScheme = useColorScheme();
   const textColor = Colors[colorScheme ?? 'light'].text;
   return (
@@ -70,16 +74,16 @@ export default function HomeScreen() {
         <FlatList style={styles.list}
           data={productList}
           renderItem={({ item, index }) => (
-            <View style={[styles.item, index !== 0 && styles.borderTop]}>
+            <Pressable onPress={() => navigation.navigate("detail")} style={[styles.item, index !== 0 && styles.borderTop]} >
               <View style={styles.imageWrapper}>
                 <Image source={item.productImg} style={styles.image} />
               </View>
               <View style={styles.itemTextBox}>
                 <ThemedText style={[styles.title, { color: textColor }]}>{item.productName}</ThemedText>
-                <ThemedText style={styles.text} >{item.productLocal} {item.productTime} {item.key}</ThemedText>
+                <ThemedText style={styles.text} >{item.productLocal} &middot; {item.productTime}</ThemedText>
                 <ThemedText style={styles.price} >{item.productPrice}</ThemedText>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       </ThemedView>
@@ -108,6 +112,7 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize:16,
+    fontWeight:500
   },
   text:{
     fontSize:12,
@@ -120,7 +125,7 @@ const styles = StyleSheet.create({
   imageWrapper: {
     width: 110,
     height: 110,
-    borderRadius: 20,
+    borderRadius: 13,
     overflow: "hidden", // 둥글게 자르는 핵심!
   },
   image: {
