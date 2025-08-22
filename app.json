@@ -37,6 +37,19 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1d58605a-f0e0-4c99-98ae-ad08dea020c2"
+      }
+    },
+    "owner": "leedonghoon",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1d58605a-f0e0-4c99-98ae-ad08dea020c2"
     }
   }
 }
