@@ -1,14 +1,13 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack, router } from 'expo-router';  // ✅ router 추가!
+import { Stack, router } from 'expo-router'; // ✅ router 추가!
 import { StatusBar } from 'expo-status-bar';
+import { Pressable, View } from 'react-native'; // ✅ react-native에서 불러오기
 import 'react-native-reanimated';
-import { Entypo } from '@expo/vector-icons';
-import { View, Pressable } from 'react-native'; // ✅ react-native에서 불러오기
 
+import { useColorScheme } from '@/hooks/useColorScheme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Octicons from '@expo/vector-icons/Octicons';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
