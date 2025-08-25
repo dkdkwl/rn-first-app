@@ -1,0 +1,80 @@
+{
+  "products": [
+    {
+      "id": "p-bottle-001",
+      "title": "시밀레 젖병소독기+램프1개",
+      "img":"https://raw.githubusercontent.com/dkdkwl/rn-db/main/images/젖병소독기.webp",
+      "price": 80000,
+      "category": "생활가전",
+      "location": "중동",
+      "status": "중고상품",
+      "description": "시밀레 젖병소독기+램프1개, 사용감 적은 상태 양호한 제품입니다.",
+      "seller": {
+        "name": "판매자A",
+        "temperature": "65.0°C",
+        "profile": "일반회원"
+      },
+      "createdAt": "2025-08-25T12:00:00Z",
+      "views": 120,
+      "chats": 3,
+      "likes": 7
+    },
+    {
+      "id": "p-cup-002",
+      "title": "멕시칸 치맵컵(콜팝컵)",
+      "img":"https://raw.githubusercontent.com/dkdkwl/rn-db/main/images/치맥컵.webp",
+      "price": 3000,
+      "category": "주방/생활",
+      "location": "상3동",
+      "status": "미사용 새상품",
+      "description": "멕시칸 치맵컵(콜팝컵), 행사용으로 적합합니다.",
+      "seller": {
+        "name": "판매자B",
+        "temperature": "72.1°C",
+        "profile": "프리소파일"
+      },
+      "createdAt": "2025-08-25T13:00:00Z",
+      "views": 85,
+      "chats": 1,
+      "likes": 2
+    },
+    {
+      "id": "p-storage-003",
+      "title": "Prota 수납 정리함",
+      "img":"https://raw.githubusercontent.com/dkdkwl/rn-db/main/images/수납바구니.webp",
+      "price": 4000,
+      "category": "가구/인테리어",
+      "location": "상2동",
+      "status": "중고상품",
+      "description": "Prota 수납 정리함, 생활 흠집은 있으나 사용에 지장 없음.",
+      "seller": {
+        "name": "판매자C",
+        "temperature": "68.9°C",
+        "profile": "파워셀러"
+      },
+      "createdAt": "2025-08-25T14:00:00Z",
+      "views": 95,
+      "chats": 2,
+      "likes": 5
+    },
+    {
+      "id": "p-laptop-004",
+      "title": "LG 울트라PC 노트북 15인치 라이젠3 15UD40N-GX36K 랩업글",
+      "img":"https://raw.githubusercontent.com/dkdkwl/rn-db/main/images/노트북.webp",
+      "price": 270000,
+      "category": "전자기기",
+      "location": "중동",
+      "status": "중고상품",
+      "description": "LG 울트라PC 노트북 15인치, 램 업그레이드 완료, 상태 양호.",
+      "seller": {
+        "name": "판매자D",
+        "temperature": "75.3°C",
+        "profile": "프리소파일"
+      },
+      "createdAt": "2025-08-25T15:00:00Z",
+      "views": 220,
+      "chats": 4,
+      "likes": 10
+    }
+  ]
+}

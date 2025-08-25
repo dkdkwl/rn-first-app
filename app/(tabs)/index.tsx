@@ -1,100 +1,62 @@
-import { StyleSheet, ScrollView,FlatList,Text,View,Image,Pressable } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 import { useNavigation } from "@react-navigation/native";
+import { Skeleton } from "moti/skeleton";
+import { useEffect, useState } from "react";
+import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
 
-
-
-const productList = [
-  {
-    productName: '시밀레 젖병소독기+램프1개',
-    productImg: require('@/assets/images/젖병소독기.webp'),
-    productPrice: '80,000원',
-    productLocal: '중동',
-    productTime: '55분',
-  },
-  {
-    productName: '멕시칸 치맵컵(콜팝컵)',
-    productImg: require('@/assets/images/치맥컵.webp'),
-    productPrice: '3,000원',
-    productLocal: '상3동',
-    productTime: '3분',
-  },
-  {
-    productName: 'Prota 수납 정리함',
-    productImg: require('@/assets/images/수납바구니.webp'),
-    productPrice: '4,000원',
-    productLocal: '상2동',
-    productTime: '35분',
-  },
-  {
-    productName: 'LG 울트라PC 노트북 15인치 라이젠3 15UD40N-GX36K 랩업글',
-    productImg: require('@/assets/images/노트북.webp'),
-    productPrice: '270,000원',
-    productLocal: '중동',
-    productTime: '15분',
-  },
-  {
-    productName: '시밀레 젖병소독기+램프1개',
-    productImg: require('@/assets/images/젖병소독기.webp'),
-    productPrice: '80,000원',
-    productLocal: '중동',
-    productTime: '55분',
-  },
-  {
-    productName: '멕시칸 치맵컵(콜팝컵)',
-    productImg: require('@/assets/images/치맥컵.webp'),
-    productPrice: '3,000원',
-    productLocal: '상3동',
-    productTime: '3분',
-  },
-  {
-    productName: 'Prota 수납 정리함',
-    productImg: require('@/assets/images/수납바구니.webp'),
-    productPrice: '4,000원',
-    productLocal: '상2동',
-    productTime: '35분',
-  },
-  {
-    productName: 'LG 울트라PC 노트북 15인치 라이젠3 15UD40N-GX36K 랩업글',
-    productImg: require('@/assets/images/노트북.webp'),
-    productPrice: '270,000원',
-    productLocal: '중동',
-    productTime: '15분',
-  }
-];
 export default function HomeScreen() {
+  const [products, setProducts] = useState([]);
+useEffect(() => {
+  fetch("https://my-json-server.typicode.com/dkdkwl/rn-db/products")
+    .then(res => res.json())
+    .then((data) => {
+      setProducts(data);
+      console.log(data);
+    })
+    .catch(err => console.error(err));
+}, [])
+  
   const navigation = useNavigation();
   const colorScheme = useColorScheme();
   const textColor = Colors[colorScheme ?? 'light'].text;
   return (
       <ThemedView style={styles.titleContainer}>
+    <View style={styles.container}>
+      {/* 프로필 이미지 자리 */}
+      <Skeleton width={80} height={80} radius="round" colorMode="light" />
+
+      {/* 이름 자리 */}
+      <Skeleton width={200} height={20} radius={4} colorMode="light" style={{ marginTop: 16 }} />
+
+      {/* 서브 텍스트 자리 */}
+      <Skeleton width={150} height={20} radius={4} colorMode="light" style={{ marginTop: 8 }} />
+    </View>
         <FlatList style={styles.list}
-          data={productList}
+          data={products}
           renderItem={({ item, index }) => (
-            <Pressable onPress={() => navigation.navigate("detail")} style={[styles.item, index !== 0 && styles.borderTop]} >
-              <View style={styles.imageWrapper}>
-                <Image source={item.productImg} style={styles.image} />
-              </View>
-              <View style={styles.itemTextBox}>
-                <ThemedText style={[styles.title, { color: textColor }]}>{item.productName}</ThemedText>
-                <ThemedText style={styles.text} >{item.productLocal} &middot; {item.productTime}</ThemedText>
-                <ThemedText style={styles.price} >{item.productPrice}</ThemedText>
-              </View>
-            </Pressable>
+              <Pressable onPress={() => navigation.navigate("detail")} style={[styles.item, index !== 0 && styles.borderTop]} >
+                <View style={styles.imageWrapper}>
+                <Image source={{uri: item.img}} style={styles.image} />
+                </View>
+                <View style={styles.itemTextBox}>
+                <ThemedText style={[styles.title, { color: textColor }]}>{item.title}</ThemedText>
+                <ThemedText style={styles.text} >{item.location} &middot; {item.createdAt}</ThemedText>
+                <ThemedText style={styles.price} >{item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} 원</ThemedText>
+                </View>
+              </Pressable>
           )}
-        />
+          />
       </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 2,
+    flex: 1,
+    flexDirection: 'column',
   },
   list:{
     paddingRight: 15,
